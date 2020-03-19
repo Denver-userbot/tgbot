@@ -19,7 +19,7 @@ from tg_bot.modules.helper_funcs.chat_status import is_user_admin
 from tg_bot.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
-Hi {}, my name is {}! If you have any questions on how to use me, read /help - Channel Anti-Scam : @rr_help.
+Hi {}, my name is {}! If you have any questions on how to use me, read /help - Powered by @Denver02 .
 
 I also have a news channel, @antiscam_support for announcements on new features, downtime, etc.
 
