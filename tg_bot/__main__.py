@@ -21,7 +21,8 @@ from tg_bot.modules.helper_funcs.misc import paginate_modules
 PM_START_TEXT = """
 Hi {}, my name is {}! If you have any questions on how to use me, read /help .
 
-I also have a news channel, @antiscam_support for announcements on new features, downtime, etc.
+
+I also have a news channel, @groupmanager02 for announcements on new features, downtime, etc.
 
 You can find the list of available commands with /help.
 """
@@ -35,6 +36,7 @@ the things I can help you with.
  - /start: start the bot
  - /help: PM's you this message.
  - /help <module name>: PM's you info about that module.
+ - /donate: information about how to donate!
  - /settings:
    - in PM: will send you your settings for all supported modules.
    - in a group: will redirect you to pm, with all that chat's settings.
