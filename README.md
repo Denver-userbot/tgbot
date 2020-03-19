@@ -69,6 +69,7 @@ class Development(Config):
 
 If you can't have a config.py file (EG on heroku), it is also possible to use environment variables.
 The following env variables are supported:
+https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FDenver-userbot%2Ftgbot
  - `ENV`: Setting this to ANYTHING will enable env variables
 
  - `TOKEN`: Your bot token, as a string.
