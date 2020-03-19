@@ -1,1 +1,1 @@
-worker: python 3.6 -m tgbot
+worker:  python3 -m tg_bot
