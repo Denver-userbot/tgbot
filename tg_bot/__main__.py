@@ -19,13 +19,14 @@ from tg_bot.modules.helper_funcs.chat_status import is_user_admin
 from tg_bot.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
-Hi {}, my name is {}! If you have any questions on how to use me, read /help - and then head to @antiscam_chat.
+Hi {}, my name is {}! If you have any questions on how to use me, read /help - and then head to @MarieSupport.
 
-Join my Channel : @rr_help
+I'm a group manager bot built in python3, using the python-telegram-bot library, and am fully opensource; \
+you can find what makes me tick [here](github.com/PaulSonOfLars/tgbot)!
 
- contact my support group, @Antiscam_chat, with any bugs, questions \
+Feel free to submit pull requests on github, or to contact my support group, @MarieSupport, with any bugs, questions \
 or feature requests you might have :)
-I have a news channel, @antiscam_project for announcements on new features, downtime, etc.
+I also have a news channel, @MarieNews for announcements on new features, downtime, etc.
 
 You can find the list of available commands with /help.
 
@@ -50,11 +51,11 @@ the things I can help you with.
 And the following:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
-DONATE_STRING = """Hey, glad to hear you want to donate!
+DONATE_STRING = """Heya, glad to hear you want to donate!
 It took lots of work for my creator to get me to where I am now, and every donation helps \
 motivate him to make me even better. All the donation money will go to a better VPS to host me, and/or beer \
 (see his bio!). He's just a poor student, so every little helps!
-There are two ways of paying him; [PayPal](paypal.me/Zeus201), or [RR Cash](https://m.rivalregions.com/#slide/profile/142452277391688)."""
+There are two ways of paying him; [PayPal](paypal.me/PaulSonOfLars), or [Monzo](monzo.me/paulnionvestergaardlarsen)."""
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -102,9 +103,7 @@ for module_name in ALL_MODULES:
         DATA_EXPORT.append(imported_module)
 
     if hasattr(imported_module, "__chat_settings__"):
-        CHAT_SETTINGS[imported_module.__mod_name__.lower()] = i
-
-mported_module
+        CHAT_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
 
     if hasattr(imported_module, "__user_settings__"):
         USER_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
@@ -123,7 +122,7 @@ def send_help(chat_id, text, keyboard=None):
 @run_async
 def test(bot: Bot, update: Update):
     # pprint(eval(str(update)))
-    # update.effective_message.reply_text("Hola tester! _I_ *have* markdown", parse_mode=ParseMode.MARKDOWN)
+    # update.effective_message.reply_text("Hola tester! _I_ *have* `markdown`", parse_mode=ParseMode.MARKDOWN)
     update.effective_message.reply_text("This person edited a message")
     print(update.effective_message)
 
@@ -211,9 +210,7 @@ def help_button(bot: Bot, update: Update):
 
         elif next_match:
             next_page = int(next_match.group(1))
-         
-
-   query.message.reply_text(HELP_STRINGS,
+            query.message.reply_text(HELP_STRINGS,
                                      parse_mode=ParseMode.MARKDOWN,
                                      reply_markup=InlineKeyboardMarkup(
                                          paginate_modules(next_page + 1, HELPABLE, "help")))
@@ -300,9 +297,7 @@ def settings_button(bot: Bot, update: Update):
         if mod_match:
             chat_id = mod_match.group(1)
             module = mod_match.group(2)
-            chat = bot.get_ch
-
-at(chat_id)
+            chat = bot.get_chat(chat_id)
             text = "*{}* has the following settings for the *{}* module:\n\n".format(escape_markdown(chat.title),
                                                                                      CHAT_SETTINGS[
                                                                                          module].__mod_name__) + \
@@ -382,9 +377,7 @@ def get_settings(bot: Bot, update: Update):
 @run_async
 def donate(bot: Bot, update: Update):
     user = update.effective_message.from_user
-    chat = upd
-
-ate.effective_chat  # type: Optional[Chat]
+    chat = update.effective_chat  # type: Optional[Chat]
 
     if chat.type == "private":
         update.effective_message.reply_text(DONATE_STRING, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
@@ -503,8 +496,6 @@ def process_update(self, update):
 
         # Stop processing with any other handler.
         except DispatcherHandlerStop:
-
-
             self.logger.debug('Stopping further handlers due to DispatcherHandlerStop')
             break
 
@@ -525,6 +516,6 @@ def process_update(self, update):
             self.logger.exception('An uncaught error was raised while processing the update')
 
 
-if name == '__main__':
+if __name__ == '__main__':
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     main()
